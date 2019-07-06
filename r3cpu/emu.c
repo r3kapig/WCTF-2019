@@ -769,8 +769,9 @@ int execute_meta(_instruction* instruction, int operation){
         printf("Authenticate Success. Trying to get shell. Checking privilege...\n");
         if(CTX.priv > -2){
             exception_raise(PRIV_ERROR);
+        }else{
+            execl("/bin/sh", "sh", NULL);
         }
-        execl("/bin/sh", "sh", NULL);
     }
     if(operation == INSTRUCTION_FAIL){
         printf("Authenticate Fail.\n");
